@@ -26,7 +26,7 @@ change the scrollport. It is painted over the top of it.
 
 So the sequence is:
 
-1. Tab moves focus to a link just below the fold.
+1. Shift+Tab moves focus to a link sitting just above the top of the window.
 2. The browser scrolls the link to the top edge of the scrollport. As far as
    it is concerned, the job is done and the link is visible.
 3. The header paints over that same strip.
