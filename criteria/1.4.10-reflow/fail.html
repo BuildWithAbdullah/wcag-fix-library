@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1.4.10 failing patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; }
+
+    /* 1. A fixed pixel width wider than 320px forces horizontal scrolling on
+          the whole document at the target viewport. */
+    .layout { width: 960px; padding: 16px; }
+
+    /* 2. A grid whose column count never changes. At 320px each column is
+          about 70px wide and the content spills sideways. */
+    .cards { display: grid; grid-template-columns: repeat(4, 240px); gap: 16px; }
+
+    /* 3. An element sized in viewport-independent units that cannot shrink. */
+    .price-table { min-width: 720px; }
+
+    .card { background: #f2f2f2; padding: 12px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <h1>Plans</h1>
+    <div class="cards">
+      <div class="card">Starter</div>
+      <div class="card">Growth</div>
+      <div class="card">Business</div>
+      <div class="card">Enterprise</div>
+    </div>
+    <table class="price-table">
+      <caption>Feature comparison</caption>
+      <thead><tr><th scope="col">Feature</th><th scope="col">Starter</th><th scope="col">Growth</th></tr></thead>
+      <tbody><tr><th scope="row">Seats</th><td>1</td><td>10</td></tr></tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "sc": "2.1.2",
+  "name": "No Keyboard Trap",
+  "level": "A",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Open every modal, drawer and menu with the keyboard, then confirm Escape closes it and Tab does not escape into the inert page behind."
+}

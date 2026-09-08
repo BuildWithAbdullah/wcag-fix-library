@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.3 failing patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    /* 1. The DOM order is sidebar then article. CSS order reverses them
+          visually, so focus jumps from the article back up to the sidebar,
+          which sits to its left on screen. Tab order and reading order no
+          longer agree. */
+    .layout { display: flex; }
+    .sidebar { order: 2; width: 200px; }
+    .article { order: 1; flex: 1; }
+
+    /* 2. A menu that is hidden visually but is still in the tab order.
+          Focus disappears into eight invisible links. */
+    .submenu { opacity: 0; height: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Related">
+      <a href="/a">Care guide</a>
+      <a href="/b">Sizing</a>
+    </nav>
+    <article class="article">
+      <h1>Wool overcoat</h1>
+      <p>Cut from deadstock Italian wool.</p>
+      <a href="/buy">Buy now</a>
+    </article>
+  </div>
+
+  <nav class="submenu" aria-label="Hidden submenu">
+    <a href="/x1">Hidden one</a>
+    <a href="/x2">Hidden two</a>
+  </nav>
+</body>
+</html>

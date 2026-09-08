@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.3 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    /* 1. The DOM is in the order the content should be read and traversed.
+          Visual placement is achieved without reordering, so tab order and
+          reading order agree. */
+    .layout { display: flex; }
+    .article { flex: 1; }
+    .sidebar { width: 200px; }
+
+    /* 2. Hidden content is hidden from everyone. display:none removes it from
+          the tab order and from the accessibility tree together. */
+    .submenu[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <article class="article">
+      <h1>Wool overcoat</h1>
+      <p>Cut from deadstock Italian wool.</p>
+      <a href="/buy">Buy now</a>
+    </article>
+    <nav class="sidebar" aria-label="Related">
+      <a href="/a">Care guide</a>
+      <a href="/b">Sizing</a>
+    </nav>
+  </div>
+
+  <nav class="submenu" aria-label="Submenu" hidden>
+    <a href="/x1">Item one</a>
+    <a href="/x2">Item two</a>
+  </nav>
+</body>
+</html>

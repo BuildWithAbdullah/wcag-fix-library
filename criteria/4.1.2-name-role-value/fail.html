@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>4.1.2 failing patterns</title>
+  <style>body { font-family: system-ui, sans-serif; padding: 24px; }</style>
+</head>
+<body>
+  <!-- 1. A custom control with a role but no name and no state. Announced as
+       "button", with no way to tell whether the panel is open. -->
+  <div role="button" tabindex="0" class="accordion-trigger">
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M4 6l4 4 4-4" stroke="currentColor" fill="none" stroke-width="2"/>
+    </svg>
+  </div>
+  <div id="panel-1" hidden><p>Ships in two working days.</p></div>
+
+  <!-- 2. aria-labelledby pointing at an id that does not exist. The name
+       silently resolves to nothing. -->
+  <button type="button" aria-labelledby="missing-id">
+    <span aria-hidden="true">&#9733;</span>
+  </button>
+
+  <!-- 3. A focusable element inside aria-hidden. It can still be reached by
+       Tab, but it is invisible to the screen reader, so focus lands somewhere
+       that does not exist as far as the user can tell. -->
+  <div aria-hidden="true">
+    <a href="/hidden">Hidden but focusable</a>
+  </div>
+
+  <!-- 4. Nested interactive controls. A button inside a link produces one
+       target with two conflicting roles, and neither is reliably operable. -->
+  <a href="/product/1">
+    Wool overcoat
+    <button type="button">Quick add</button>
+  </a>
+
+  <!-- 5. A custom switch that never reports its state. -->
+  <div role="switch" tabindex="0">Email me about restocks</div>
+</body>
+</html>

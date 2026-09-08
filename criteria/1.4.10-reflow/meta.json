@@ -1,0 +1,8 @@
+{
+  "sc": "1.4.10",
+  "name": "Reflow",
+  "level": "AA",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Set the viewport to 320 CSS px wide (or 400% zoom at 1280px) and confirm no two-dimensional scrolling is required."
+}

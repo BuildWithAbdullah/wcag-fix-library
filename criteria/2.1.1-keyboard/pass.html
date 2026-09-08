@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.1.1 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    .btn { background: #1a1a1a; color: #fff; padding: 10px 18px;
+           border: 0; font: inherit; cursor: pointer; }
+    .swatch { width: 32px; height: 32px; padding: 0; border: 1px solid #767676; cursor: pointer; }
+    :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <!-- 1. A button element. Focusable, announced as a button, fires on both
+       Enter and Space, and works with speech control, all for free. -->
+  <button class="btn" type="button" onclick="alert('added')">Add to basket</button>
+
+  <!-- 2. A control that does something on this page is a button, not a link.
+       If it navigates, give it an href and make it a real link. -->
+  <button type="button" onclick="alert('menu')">Open menu</button>
+
+  <!-- 3. Swatches as buttons inside a named group, each with a text name so
+       the choice is not conveyed by colour alone. -->
+  <fieldset>
+    <legend>Colour</legend>
+    <button class="swatch" type="button" style="background:#8b1e3f">
+      <span class="visually-hidden">Claret</span>
+    </button>
+    <button class="swatch" type="button" style="background:#1e3f8b">
+      <span class="visually-hidden">Navy</span>
+    </button>
+  </fieldset>
+
+  <!-- 4. No positive tabindex. Fix the order by fixing the DOM order. -->
+  <p><input type="text" aria-label="First name"></p>
+  <p><input type="text" aria-label="Last name"></p>
+</body>
+</html>

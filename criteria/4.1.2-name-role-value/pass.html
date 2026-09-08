@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>4.1.2 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+    .card { border: 1px solid #767676; padding: 12px; max-width: 320px; }
+    :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <!-- 1. A real button carrying name, role and state. aria-expanded is the
+       value part of name-role-value for a disclosure. -->
+  <h2>
+    <button type="button" aria-expanded="false" aria-controls="panel-1" id="acc-1">
+      Delivery
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M4 6l4 4 4-4" stroke="currentColor" fill="none" stroke-width="2"/>
+      </svg>
+    </button>
+  </h2>
+  <div id="panel-1" hidden><p>Ships in two working days.</p></div>
+
+  <!-- 2. The name comes from real text inside the control. -->
+  <button type="button">
+    <span aria-hidden="true">&#9733;</span>
+    <span class="visually-hidden">Add to wishlist</span>
+  </button>
+
+  <!-- 3. Content hidden from assistive technology is hidden from the keyboard
+       too. inert does both in one attribute. -->
+  <div inert>
+    <a href="/hidden">Not reachable by anyone</a>
+  </div>
+
+  <!-- 4. Siblings, not nesting. Each control is one target with one role.
+       The card is styled as a unit; the controls stay separate. -->
+  <div class="card">
+    <h3><a href="/product/1">Wool overcoat</a></h3>
+    <button type="button">Quick add<span class="visually-hidden">, wool overcoat</span></button>
+  </div>
+
+  <!-- 5. A native checkbox reports its state for free, in every browser and
+       screen reader, with no script. -->
+  <p>
+    <input type="checkbox" id="restock">
+    <label for="restock">Email me about restocks</label>
+  </p>
+
+  <script>
+    var trigger = document.getElementById('acc-1');
+    var panel = document.getElementById('panel-1');
+    trigger.addEventListener('click', function () {
+      var open = trigger.getAttribute('aria-expanded') === 'true';
+      trigger.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+    });
+  </script>
+</body>
+</html>

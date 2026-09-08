@@ -1,0 +1,15 @@
+{
+  "name": "wcag-fix-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Failing and corrected markup pairs indexed by WCAG success criterion, verified with axe-core.",
+  "type": "module",
+  "scripts": {
+    "verify": "node tools/verify.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/puppeteer": "^4.10.0",
+    "axe-core": "^4.10.2",
+    "puppeteer": "^23.0.0"
+  }
+}

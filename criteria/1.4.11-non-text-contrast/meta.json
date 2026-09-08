@@ -1,0 +1,8 @@
+{
+  "sc": "1.4.11",
+  "name": "Non-text Contrast",
+  "level": "AA",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Sample the boundary of every control and the strokes of every meaningful icon against their adjacent colour and confirm 3:1."
+}

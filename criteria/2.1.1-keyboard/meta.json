@@ -1,0 +1,8 @@
+{
+  "sc": "2.1.1",
+  "name": "Keyboard",
+  "level": "A",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Unplug the mouse. Tab through every interactive element and operate each one with Enter or Space."
+}

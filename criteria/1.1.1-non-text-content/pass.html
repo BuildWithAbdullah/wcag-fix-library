@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1.1.1 corrected patterns</title>
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      margin: -1px; padding: 0; overflow: hidden;
+      clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product</h1>
+
+  <!-- 1 and 2. The alternative carries the information the image carries.
+       For a chart, that means the finding, not the word "chart". If the full
+       data matters, put it in a table and point at it. -->
+  <img src="chart-q3.png" width="400" height="220"
+       alt="Quarterly revenue: 82,000 in Q1, 96,000 in Q2, 141,000 in Q3.">
+
+  <!-- 3. Decorative image removed from the accessibility tree. An empty alt
+       is required; omitting alt is not the same thing. -->
+  <img src="divider.svg" alt="" width="600" height="8">
+
+  <!-- 4. Icon-only control. The icon is hidden and the name is supplied as
+       real text, so it also survives a failed icon-font load. -->
+  <button type="button">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span class="visually-hidden">Close dialog</span>
+  </button>
+
+  <!-- 5. An SVG with role="img" needs a name like any other image. -->
+  <svg role="img" aria-labelledby="avatar-title" width="32" height="32" viewBox="0 0 32 32">
+    <title id="avatar-title">Account avatar</title>
+    <circle cx="16" cy="16" r="15" fill="#444"/>
+  </svg>
+</body>
+</html>

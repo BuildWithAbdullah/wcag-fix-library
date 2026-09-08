@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1.4.10 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; }
+
+    /* 1. max-width instead of width. The layout caps on a large screen and
+          collapses cleanly on a small one. */
+    .layout { max-width: 960px; padding: 16px; }
+
+    /* 2. auto-fit with minmax reflows to a single column without a media
+          query and without a breakpoint to maintain. */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+      gap: 16px;
+    }
+
+    /* 3. Data tables are the documented exception: they may scroll in one
+          direction. Scope the scroll to the table, not the page, and make the
+          scroll container focusable so it can be reached by keyboard. */
+    .table-scroll { overflow-x: auto; }
+    .table-scroll:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+    .price-table { min-width: 720px; }
+
+    .card { background: #f2f2f2; padding: 12px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <h1>Plans</h1>
+    <div class="cards">
+      <div class="card">Starter</div>
+      <div class="card">Growth</div>
+      <div class="card">Business</div>
+      <div class="card">Enterprise</div>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Feature comparison, scrollable">
+      <table class="price-table">
+        <caption>Feature comparison</caption>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Starter</th><th scope="col">Growth</th></tr></thead>
+        <tbody><tr><th scope="row">Seats</th><td>1</td><td>10</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

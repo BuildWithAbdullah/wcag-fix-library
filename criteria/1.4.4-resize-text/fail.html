@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Blocks pinch-to-zoom. Anyone who needs to magnify the page cannot.
+       This line is in a very large number of live themes because it was
+       standard advice around 2012 and was never revisited. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>1.4.4 failing pattern</title>
+  <style>
+    /* Fixed pixel height on a text container. Enlarge the text and it is
+       clipped rather than reflowed. */
+    .promo { height: 48px; overflow: hidden; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="promo">Free shipping on orders over 50. Ends Sunday.</div>
+</body>
+</html>

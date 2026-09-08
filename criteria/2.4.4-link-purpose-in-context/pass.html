@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.4 corrected patterns</title>
+  <style>
+    .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <h1>Journal</h1>
+
+  <!-- 1. The icon is hidden and the name is real text. -->
+  <a href="/basket">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 6h18l-2 12H5z" fill="currentColor"/>
+    </svg>
+    <span class="visually-hidden">Basket</span>
+  </a>
+
+  <!-- 2. The link text describes the destination. -->
+  <p>Full details: <a href="/2026/wool-sourcing-report">the 2026 wool sourcing report</a></p>
+
+  <!-- 3. The visible text stays short for the layout, and hidden text makes
+       each link unique when read out of context. -->
+  <article>
+    <h2 id="t-wool">Sourcing deadstock wool</h2>
+    <p>How we buy surplus mill stock.</p>
+    <a href="/journal/wool">Read more<span class="visually-hidden"> about sourcing deadstock wool</span></a>
+  </article>
+  <article>
+    <h2 id="t-repairs">Repair, do not replace</h2>
+    <p>Our free repairs programme.</p>
+    <a href="/journal/repairs">Read more<span class="visually-hidden"> about our repairs programme</span></a>
+  </article>
+
+  <!-- 4. Same-looking links distinguished by their accessible names. -->
+  <p>
+    <a href="/size-guide-men">Size guide<span class="visually-hidden">, menswear</span></a>
+    and
+    <a href="/size-guide-women">Size guide<span class="visually-hidden">, womenswear</span></a>
+  </p>
+</body>
+</html>

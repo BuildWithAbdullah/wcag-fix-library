@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.7 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+
+    /* A single global rule. :focus-visible shows the indicator for keyboard
+       and other non-pointer input and suppresses it for mouse clicks, which
+       is the behaviour designers actually want when they ask to remove it. */
+    :focus-visible {
+      outline: 3px solid #005fcc;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* A two-tone ring stays visible on any background: one light layer, one
+       dark layer. This is the most reliable pattern for a site with both
+       light and dark sections and it needs no per-section overrides. */
+    .panel-dark { background: #14161a; color: #fff; padding: 20px; }
+    .panel-dark :focus-visible {
+      outline: 3px solid #ffffff;
+      box-shadow: 0 0 0 6px #14161a, 0 0 0 9px #ffffff;
+      outline-offset: 2px;
+    }
+
+    .btn { background: #1a1a1a; color: #fff; border: 0; padding: 10px 18px; font: inherit; }
+
+    /* Windows high contrast mode discards author colours. A transparent
+       outline is repainted by the OS, so the indicator survives. */
+    @media (forced-colors: active) {
+      :focus-visible { outline: 3px solid transparent; }
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" type="button">Add to basket</button>
+  <a href="/shop">Continue shopping</a>
+  <div class="panel-dark"><a href="/sale" style="color:#fff">View sale</a></div>
+</body>
+</html>

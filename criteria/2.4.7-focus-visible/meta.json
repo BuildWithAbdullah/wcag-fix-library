@@ -1,0 +1,8 @@
+{
+  "sc": "2.4.7",
+  "name": "Focus Visible",
+  "level": "AA",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Tab through every interactive element and confirm a visible indicator appears on each one, in every colour scheme."
+}

@@ -1,0 +1,8 @@
+{
+  "sc": "2.4.4",
+  "name": "Link Purpose (In Context)",
+  "level": "A",
+  "axeDetectable": true,
+  "axeRules": ["link-name", "link-in-text-block", "identical-links-same-purpose"],
+  "manualCheck": "n/a"
+}

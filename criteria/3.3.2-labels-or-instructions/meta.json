@@ -1,0 +1,8 @@
+{
+  "sc": "3.3.2",
+  "name": "Labels or Instructions",
+  "level": "A",
+  "axeDetectable": true,
+  "axeRules": ["label", "form-field-multiple-labels", "select-name", "aria-input-field-name"],
+  "manualCheck": "n/a"
+}

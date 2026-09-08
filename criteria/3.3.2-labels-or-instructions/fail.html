@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3.3.2 failing patterns</title>
+  <style>body { font-family: system-ui, sans-serif; padding: 24px; }</style>
+</head>
+<body>
+  <form>
+    <!-- 1. Placeholder used as the label. It disappears the moment the user
+         types, so anyone who is interrupted has no way to recall what the
+         field was for. Its default contrast also fails 1.4.3. -->
+    <p><input type="email" placeholder="Email address"></p>
+
+    <!-- 2. A label that is not associated with anything. The for attribute
+         and the id do not match, so the association does not exist. -->
+    <p>
+      <label for="phone-number">Phone</label>
+      <input type="tel" id="phone">
+    </p>
+
+    <!-- 3. A required field marked only with a red asterisk, with no
+         explanation of what the asterisk means and no programmatic required
+         state. -->
+    <p>
+      <label for="pc">Postcode <span style="color:#c00">*</span></label>
+      <input type="text" id="pc">
+    </p>
+
+    <!-- 4. A format constraint that is only revealed after submission fails. -->
+    <p>
+      <label for="dob">Date of birth</label>
+      <input type="text" id="dob">
+    </p>
+
+    <!-- 5. A select with no label at all. -->
+    <p>
+      <select>
+        <option>Standard delivery</option>
+        <option>Express delivery</option>
+      </select>
+    </p>
+
+    <button type="submit">Continue</button>
+  </form>
+</body>
+</html>

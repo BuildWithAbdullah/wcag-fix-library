@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.1.2 corrected pattern</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; }
+    .backdrop[data-open] { display: block; }
+    .drawer { position: fixed; top: 0; right: 0; width: 320px; height: 100%;
+              background: #fff; padding: 24px; }
+    :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <div id="page">
+    <h1>Basket</h1>
+    <button type="button" id="open">Open basket</button>
+    <p><a href="/shop">Continue shopping</a></p>
+  </div>
+
+  <div class="backdrop" id="backdrop">
+    <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" id="drawer">
+      <h2 id="drawer-title">Your basket</h2>
+      <p>1 item</p>
+      <button type="button" id="close">Close</button>
+      <a href="/checkout">Checkout</a>
+    </div>
+  </div>
+
+  <script>
+    var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]),' +
+                    'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    var backdrop = document.getElementById('backdrop');
+    var drawer   = document.getElementById('drawer');
+    var page     = document.getElementById('page');
+    var opener   = null;
+
+    function openDrawer(trigger) {
+      opener = trigger;
+      backdrop.setAttribute('data-open', '');
+      // The page behind is made inert so it cannot be tabbed into and is
+      // hidden from assistive technology at the same time.
+      page.inert = true;
+      drawer.querySelector(FOCUSABLE).focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeDrawer() {
+      backdrop.removeAttribute('data-open');
+      page.inert = false;
+      document.removeEventListener('keydown', onKeydown);
+      // Focus returns to the control that opened the drawer, so the user is
+      // put back exactly where they were.
+      if (opener) opener.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { closeDrawer(); return; }
+      if (e.key !== 'Tab') return;
+
+      // Fallback cycle for browsers without inert support.
+      var items = Array.prototype.slice.call(drawer.querySelectorAll(FOCUSABLE));
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+
+    document.getElementById('open').addEventListener('click', function (e) { openDrawer(e.currentTarget); });
+    document.getElementById('close').addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeDrawer(); });
+  </script>
+</body>
+</html>

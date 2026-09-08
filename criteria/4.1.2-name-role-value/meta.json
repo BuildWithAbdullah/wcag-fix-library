@@ -1,0 +1,8 @@
+{
+  "sc": "4.1.2",
+  "name": "Name, Role, Value",
+  "level": "A",
+  "axeDetectable": true,
+  "axeRules": ["button-name", "aria-toggle-field-name", "aria-valid-attr-value", "aria-required-attr", "aria-hidden-focus", "nested-interactive"],
+  "manualCheck": "n/a"
+}

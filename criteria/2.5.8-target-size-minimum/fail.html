@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.5.8 failing patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+
+    /* 1. A 16px icon button. Under the 24 by 24 minimum in both dimensions
+          and with no spacing to fall back on. */
+    .icon-btn { width: 16px; height: 16px; padding: 0; border: 0;
+                background: #1a1a1a; color: #fff; font-size: 10px; line-height: 16px; }
+
+    /* 2. A row of small controls packed tightly together, so neither the size
+          nor the spacing exception applies. */
+    .qty { display: flex; gap: 1px; }
+    .qty button { width: 18px; height: 18px; padding: 0; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <p>
+    <button class="icon-btn" type="button" aria-label="Remove item">x</button>
+  </p>
+
+  <div class="qty">
+    <button type="button" aria-label="Decrease quantity">-</button>
+    <button type="button" aria-label="Increase quantity">+</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3.3.2 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    .hint { color: #595959; font-size: 14px; display: block; }
+    .req { color: #b3001b; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <form>
+    <!-- A single statement of what the marker means, before the fields that
+         use it. -->
+    <p>Fields marked <span class="req">*</span> are required.</p>
+
+    <!-- 1. A real label, which stays visible while the field is being filled
+         in. A placeholder may supplement it but must never replace it. -->
+    <p>
+      <label for="email">Email address</label><br>
+      <input type="email" id="email" autocomplete="email">
+    </p>
+
+    <!-- 2. for and id match. This is worth checking by hand after any
+         template refactor, because it is silent when it breaks. -->
+    <p>
+      <label for="phone">Phone</label><br>
+      <input type="tel" id="phone" autocomplete="tel">
+    </p>
+
+    <!-- 3. Required conveyed in text, in the accessible name, and
+         programmatically, rather than by colour alone. -->
+    <p>
+      <label for="pc">Postcode <span class="req" aria-hidden="true">*</span>
+        <span class="visually-hidden">(required)</span>
+      </label><br>
+      <input type="text" id="pc" required autocomplete="postal-code">
+    </p>
+
+    <!-- 4. The format is stated up front and tied to the field with
+         aria-describedby, so it is announced when focus arrives rather than
+         discovered after a failed submission. -->
+    <p>
+      <label for="dob">Date of birth</label>
+      <span class="hint" id="dob-hint">For example, 31 03 1990</span>
+      <input type="text" id="dob" aria-describedby="dob-hint" inputmode="numeric">
+    </p>
+
+    <!-- 5. Every control has a label, including selects. -->
+    <p>
+      <label for="delivery">Delivery speed</label><br>
+      <select id="delivery">
+        <option>Standard delivery</option>
+        <option>Express delivery</option>
+      </select>
+    </p>
+
+    <button type="submit">Continue</button>
+  </form>
+</body>
+</html>

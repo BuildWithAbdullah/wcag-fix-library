@@ -1,0 +1,8 @@
+{
+  "sc": "2.5.8",
+  "name": "Target Size (Minimum)",
+  "level": "AA",
+  "axeDetectable": true,
+  "axeRules": ["target-size"],
+  "manualCheck": "n/a"
+}

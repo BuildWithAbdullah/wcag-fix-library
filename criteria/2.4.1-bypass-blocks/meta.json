@@ -1,0 +1,10 @@
+{
+  "sc": "2.4.1",
+  "name": "Bypass Blocks",
+  "level": "A",
+  "axeDetectable": true,
+  "axeTags": ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"],
+  "axeRules": ["region", "landmark-one-main", "page-has-heading-one"],
+  "axeNote": "axe classifies the landmark rules as best-practice rather than WCAG-tagged, so a scan filtered to WCAG tags alone reports nothing here. Its own bypass rule returns incomplete rather than a violation, because it cannot determine from the DOM whether a skip mechanism works.",
+  "manualCheck": "n/a"
+}

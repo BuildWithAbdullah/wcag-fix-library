@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.7 failing patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+
+    /* 1. The line that removes focus from the entire site. It is still
+          present in a large number of shipped stylesheets and resets, usually
+          added because a designer objected to the ring on mouse click. */
+    *:focus { outline: none; }
+
+    /* 2. A ring that exists but cannot be seen: 1px, low contrast, and sitting
+          directly on the element edge. */
+    .btn:focus { outline: 1px solid #cccccc; outline-offset: 0; }
+
+    /* 3. A dark ring that vanishes on the dark section it sits on. */
+    .panel-dark { background: #14161a; color: #fff; padding: 20px; }
+    .panel-dark a:focus { outline: 2px solid #1a1a1a; }
+
+    .btn { background: #1a1a1a; color: #fff; border: 0; padding: 10px 18px; font: inherit; }
+  </style>
+</head>
+<body>
+  <button class="btn" type="button">Add to basket</button>
+  <a href="/shop">Continue shopping</a>
+  <div class="panel-dark"><a href="/sale" style="color:#fff">View sale</a></div>
+</body>
+</html>

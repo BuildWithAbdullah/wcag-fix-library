@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1.3.1 failing patterns</title>
+  <style>
+    .headingish { font-size: 1.6rem; font-weight: 700; margin: 1.2em 0 .4em; }
+    .nav-row { display: flex; gap: 1rem; }
+  </style>
+</head>
+<body>
+  <!-- 1. Looks like a heading, is not a heading. Invisible to a scanner,
+       fatal to anyone navigating by heading shortcut. -->
+  <div class="headingish">Shipping and returns</div>
+  <p>Orders are dispatched within two working days.</p>
+
+  <!-- 2. A list that is not a list. Screen readers cannot announce
+       "list, 3 items", and item-by-item navigation does not work. -->
+  <ul class="nav-row">
+    <div><a href="/delivery">Delivery</a></div>
+    <div><a href="/returns">Returns</a></div>
+    <div><a href="/contact">Contact</a></div>
+  </ul>
+
+  <!-- 3. A data table with no header cells. Every cell is orphaned from the
+       column it belongs to. -->
+  <table>
+    <tr><td>Size</td><td>Chest</td><td>Length</td></tr>
+    <tr><td>S</td><td>96 cm</td><td>68 cm</td></tr>
+    <tr><td>M</td><td>101 cm</td><td>70 cm</td></tr>
+  </table>
+
+  <!-- 4. Related radio controls with no programmatic grouping. The question
+       they answer is only conveyed by proximity. -->
+  <p>Delivery speed</p>
+  <label><input type="radio" name="speed" value="std"> Standard</label>
+  <label><input type="radio" name="speed" value="exp"> Express</label>
+</body>
+</html>

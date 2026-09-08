@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.1.2 failing pattern</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; }
+    .backdrop[data-open] { display: block; }
+    .drawer { position: fixed; top: 0; right: 0; width: 320px; height: 100%;
+              background: #fff; padding: 24px; }
+    :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1>Basket</h1>
+  <button type="button" id="open">Open basket</button>
+  <p><a href="/shop">Continue shopping</a></p>
+
+  <!-- The drawer opens, but focus is never moved into it, nothing is trapped
+       inside it, and Escape does nothing. A keyboard user tabs from the open
+       button straight past the drawer into the page behind, which is still
+       fully tabbable underneath a visual overlay they cannot dismiss.
+       There is no way back to the drawer and no way to close it. -->
+  <div class="backdrop" id="backdrop">
+    <div class="drawer" role="dialog" aria-label="Basket">
+      <h2>Your basket</h2>
+      <p>1 item</p>
+      <button type="button" id="close">Close</button>
+      <a href="/checkout">Checkout</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('open').addEventListener('click', function () {
+      document.getElementById('backdrop').setAttribute('data-open', '');
+    });
+    document.getElementById('close').addEventListener('click', function () {
+      document.getElementById('backdrop').removeAttribute('data-open');
+    });
+  </script>
+</body>
+</html>

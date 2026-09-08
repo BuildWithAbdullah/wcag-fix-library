@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.4 failing patterns</title>
+</head>
+<body>
+  <h1>Journal</h1>
+
+  <!-- 1. An empty link. The anchor wraps an icon with no text and no name,
+       so it is announced as "link" with nothing else. -->
+  <a href="/basket">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6h18l-2 12H5z" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <!-- 2. A link whose only accessible name is a URL. Screen readers read it
+       character by character in some configurations. -->
+  <p>Full details: <a href="/2026/wool-sourcing-report">/2026/wool-sourcing-report</a></p>
+
+  <!-- 3. "Read more" repeated. A screen reader user listing links on the page
+       hears "read more, read more, read more" with nothing to tell them apart.
+       Listing links out of context is one of the standard ways of navigating,
+       so the surrounding paragraph does not rescue this. -->
+  <article>
+    <h2>Sourcing deadstock wool</h2>
+    <p>How we buy surplus mill stock.</p>
+    <a href="/journal/wool">Read more</a>
+  </article>
+  <article>
+    <h2>Repair, do not replace</h2>
+    <p>Our free repairs programme.</p>
+    <a href="/journal/repairs">Read more</a>
+  </article>
+
+  <!-- 4. Two links with the same name going to different places. -->
+  <p><a href="/size-guide-men">Size guide</a> and <a href="/size-guide-women">Size guide</a></p>
+</body>
+</html>

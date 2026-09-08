@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1.4.3 failing patterns</title>
+  <style>
+    body { background: #ffffff; color: #111; font-family: system-ui, sans-serif; }
+
+    /* 1. Grey-on-white body text at 2.85:1. The most common AA failure there is. */
+    .muted { color: #949494; background: #ffffff; }
+
+    /* 2. Placeholder-grey pressed into service as real content. */
+    .caption { color: #a8a8a8; background: #ffffff; font-size: 14px; }
+
+    /* 3. A brand button whose label fails on its own background, 2.4:1. */
+    .btn-brand { background: #f0b429; color: #ffffff; border: 0;
+                 padding: 12px 20px; font-size: 16px; }
+
+    /* 4. A colour scheme with a pale surface whose text token was never
+          re-derived for it, so text lands near-white on near-white. This is
+          what a theme colour scheme failure looks like in source. */
+    .scheme-pale { background: #f7f4ee; }
+    .scheme-pale .scheme-text { color: #f2efe8; }
+  </style>
+</head>
+<body>
+  <p class="muted">Free returns within 30 days on all full-price items.</p>
+  <p class="caption">Photographed in natural light. Colours may vary by screen.</p>
+  <button class="btn-brand" type="button">Add to basket</button>
+  <div class="scheme-pale"><p class="scheme-text">Members get early access.</p></div>
+</body>
+</html>

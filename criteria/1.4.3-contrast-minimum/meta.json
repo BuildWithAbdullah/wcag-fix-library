@@ -1,0 +1,8 @@
+{
+  "sc": "1.4.3",
+  "name": "Contrast (Minimum)",
+  "level": "AA",
+  "axeDetectable": true,
+  "axeRules": ["color-contrast"],
+  "manualCheck": "n/a"
+}

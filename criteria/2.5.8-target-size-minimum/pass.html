@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.5.8 corrected patterns</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+
+    /* 1. The visible icon stays 16px. The target is grown to 24 by 24 with
+          padding, so the design is unchanged and the hit area conforms.
+          Growing the target rather than the glyph is almost always the fix
+          that survives a design review. */
+    .icon-btn {
+      min-width: 24px; min-height: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 4px; border: 0; background: #1a1a1a; color: #fff; font-size: 10px;
+    }
+
+    /* 2. Controls sized to 24 by 24 with real spacing between them. */
+    .qty { display: flex; gap: 8px; }
+    .qty button {
+      min-width: 24px; min-height: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0; font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    <button class="icon-btn" type="button" aria-label="Remove item">x</button>
+  </p>
+
+  <div class="qty">
+    <button type="button" aria-label="Decrease quantity">-</button>
+    <button type="button" aria-label="Increase quantity">+</button>
+  </div>
+</body>
+</html>

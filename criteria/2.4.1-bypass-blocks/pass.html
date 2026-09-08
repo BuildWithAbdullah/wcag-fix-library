@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2.4.1 corrected pattern</title>
+  <style>
+    /* The skip link is off screen until focused. It must not be hidden with
+       display:none or visibility:hidden, because those remove it from the tab
+       order entirely and it can then never be reached. */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: #fff; color: #1a1a1a; padding: 12px 16px; z-index: 100;
+    }
+    nav a {
+      display: inline-block;
+      padding: 8px 10px;
+    }
+
+    .skip-link:focus {
+      left: 0;
+      outline: 3px solid #005fcc;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/new">New in</a></li>
+        <li><a href="/women">Women</a></li>
+        <li><a href="/men">Men</a></li>
+        <li><a href="/sale">Sale</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/stockists">Stockists</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- tabindex="-1" makes the target programmatically focusable so that the
+       skip link moves focus rather than only moving the scroll position.
+       Without it, several browsers scroll but leave focus where it was, and
+       the next Tab goes back to the second navigation link. -->
+  <main id="main" tabindex="-1">
+    <h1>Autumn collection</h1>
+    <p>Twelve new pieces, cut from deadstock wool.</p>
+  </main>
+
+  <footer>
+    <nav aria-label="Legal">
+      <ul>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>

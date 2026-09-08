@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1.4.3 corrected patterns</title>
+  <style>
+    body { background: #ffffff; color: #111; font-family: system-ui, sans-serif; }
+
+    /* 1. #595959 clears 4.5:1 on white with room to spare. Worth memorising;
+          it settles most "can it look softer" requests without a failure. */
+    .muted { color: #595959; background: #ffffff; }
+
+    /* 2. Caption text is small text, so it needs the full 4.5:1 too. */
+    .caption { color: #595959; background: #ffffff; font-size: 14px; }
+
+    /* 3. The brand colour is kept and the label switches to a dark ink.
+          Changing the text is far easier to get signed off than changing a
+          brand colour, and it is usually the better fix anyway. */
+    .btn-brand { background: #f0b429; color: #1c1200; border: 0;
+                 padding: 12px 20px; font-size: 16px; }
+
+    /* 4. The text token is derived for the surface it actually sits on
+          rather than inherited from the default scheme. */
+    .scheme-pale { background: #f7f4ee; }
+    .scheme-pale .scheme-text { color: #40382a; }
+  </style>
+</head>
+<body>
+  <p class="muted">Free returns within 30 days on all full-price items.</p>
+  <p class="caption">Photographed in natural light. Colours may vary by screen.</p>
+  <button class="btn-brand" type="button">Add to basket</button>
+  <div class="scheme-pale"><p class="scheme-text">Members get early access.</p></div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "sc": "2.4.3",
+  "name": "Focus Order",
+  "level": "A",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Tab through the page and confirm focus moves in an order that preserves meaning and operability."
+}
