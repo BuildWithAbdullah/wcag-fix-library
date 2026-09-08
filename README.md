@@ -12,12 +12,13 @@ axe-core against it, and fails the build if a `pass.html` is not clean or a
 
 ## The part that matters more than the snippets
 
-Nine of the fifteen criteria in this library can be judged by an automated
-scanner. Six cannot.
+Nine of the sixteen criteria in this library can be judged by an automated
+scanner. Seven cannot.
 
 That ratio is the whole argument. A site can return zero automated violations
 and still be unusable: a checkout drawer a keyboard user cannot escape, a focus
-ring that vanishes on the dark footer, form fields whose borders are invisible,
+ring that vanishes on the dark footer, a sticky header that covers the link the
+user just tabbed to, form fields whose borders are invisible,
 a layout that needs sideways scrolling to read a sentence. None of those
 produce a finding in any scanner on the market.
 
@@ -40,6 +41,7 @@ most useful thing in this repository.
 | [2.4.3 Focus Order](criteria/2.4.3-focus-order/) | A | **No** | CSS reordering, hidden content left in the tab order |
 | [2.4.4 Link Purpose](criteria/2.4.4-link-purpose-in-context/) | A | Yes | Empty links, repeated "Read more", identical names |
 | [2.4.7 Focus Visible](criteria/2.4.7-focus-visible/) | AA | **No** | `outline: none`, rings that vanish on dark sections |
+| [2.4.11 Focus Not Obscured](criteria/2.4.11-focus-not-obscured-minimum/) | AA | **No** | Sticky headers, consent bars and chat widgets covering the focused element |
 | [2.5.8 Target Size (Minimum)](criteria/2.5.8-target-size-minimum/) | AA | Yes | Small controls, and the 24px versus 44px confusion |
 | [3.3.2 Labels or Instructions](criteria/3.3.2-labels-or-instructions/) | A | Yes | Placeholders as labels, mismatched `for` and `id` |
 | [4.1.2 Name, Role, Value](criteria/4.1.2-name-role-value/) | A | Yes | Custom widgets, broken references, nested interactive controls |

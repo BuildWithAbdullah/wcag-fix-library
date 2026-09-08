@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2.4.11 failing patterns</title>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: #1c1c1c;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* The focus indicator itself is fine. It contrasts, it has an offset, it
+       appears on every control. Nothing below is a 2.4.7 failure. The element
+       simply cannot be seen, because something is painted on top of it. */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #005fcc;
+      outline-offset: 2px;
+    }
+
+    /* 1. The sticky header. This is the failure in almost every case in the
+          wild. The browser scrolls a newly focused element to the very top
+          edge of the scrollport, then this header paints over that same
+          region. From the browser's point of view the element is in view, so
+          it does not scroll any further. From the user's point of view the
+          element they just tabbed to has disappeared. */
+    .site-header {
+      position: sticky;
+      top: 0;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 20px;
+      background: #123047;
+      color: #ffffff;
+      z-index: 10;
+    }
+    .site-header a { color: #ffffff; }
+
+    /* 2. A consent banner pinned to the bottom of the viewport, with no
+          dismiss control. It covers the last 96px of the scrollport for the
+          entire session, so anything focused down there is hidden too. Tabbing
+          backwards through a footer runs straight underneath it. */
+    .consent {
+      position: fixed;
+      inset: auto 0 0 0;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      background: #1c1c1c;
+      color: #ffffff;
+      z-index: 20;
+    }
+
+    /* 3. A chat launcher in the bottom corner. On its own it obscures only a
+          small square, but it stacks with the banner above and with any
+          "back to top" control, and each one is added by a different team. */
+    .chat-launcher {
+      position: fixed;
+      right: 20px;
+      bottom: 120px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 0;
+      background: #123047;
+      color: #ffffff;
+      z-index: 20;
+    }
+
+    /* 4. The skip link lands focus on #main, which then renders directly
+          beneath the sticky header. The first thing the skip link does for a
+          keyboard user is hide the thing it skipped to. */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      background: #ffffff;
+      color: #0b5cab;
+      padding: 12px 16px;
+    }
+    .skip-link:focus { left: 8px; top: 8px; z-index: 30; }
+
+    main { padding: 0 20px 320px; max-width: 44rem; }
+    ul { padding-left: 20px; }
+    li { margin: 14px 0; }
+    a { color: #0b5cab; }
+    h2 { margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <span>Northwind Supply</span>
+    <nav aria-label="Primary">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#returns">Returns</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Ordering information</h1>
+    <p>
+      Scroll down a screen or two, then press Tab repeatedly, then Shift+Tab
+      back up. Watch what happens to each link as it takes focus near the top
+      of the window.
+    </p>
+
+    <h2 id="catalogue">Catalogue</h2>
+    <p>Stock is grouped by material.</p>
+    <ul>
+      <li><a href="#catalogue">Fastenings index</a></li>
+      <li><a href="#catalogue">Sheet goods index</a></li>
+      <li><a href="#catalogue">Adhesives index</a></li>
+      <li><a href="#catalogue">Bulk pricing terms</a></li>
+    </ul>
+
+    <h2 id="delivery">Delivery</h2>
+    <p>Orders placed before 15:00 ship the same working day.</p>
+    <ul>
+      <li><a href="#delivery">Delivery timetable</a></li>
+      <li><a href="#delivery">Rural surcharge list</a></li>
+      <li><a href="#delivery">Carrier contact details</a></li>
+      <li><a href="#delivery">Tail lift booking</a></li>
+    </ul>
+
+    <h2 id="returns">Returns</h2>
+    <p>Unopened stock can be returned within thirty days.</p>
+    <ul>
+      <li><a href="#returns">Returns form</a></li>
+      <li><a href="#returns">Condition requirements</a></li>
+      <li><a href="#returns">Refund timescales</a></li>
+      <li><a href="#returns">Damage report form</a></li>
+    </ul>
+
+    <h2>Account</h2>
+    <p>Credit accounts are reviewed annually.</p>
+    <ul>
+      <li><a href="#main">Billing address</a></li>
+      <li><a href="#main">Purchase order reference</a></li>
+      <li><a href="#main">Nominated approver</a></li>
+    </ul>
+  </main>
+
+  <button class="chat-launcher" type="button">Chat</button>
+
+  <div class="consent">
+    <p>
+      We use cookies to remember your basket. There is no control here to close
+      this, so it covers the foot of every page for the whole visit.
+    </p>
+  </div>
+</body>
+</html>

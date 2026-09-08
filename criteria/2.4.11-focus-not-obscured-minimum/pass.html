@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2.4.11 corrected patterns</title>
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* How much of the top and bottom of the scrollport is painted over by
+         fixed and sticky content. These are starting values; the script at the
+         end of the file replaces them with measured ones.
+
+         They are deliberately NOT the properties that size the header and the
+         banner. A custom property that is both measured from an element and
+         used to size that element is a feedback loop: the observer writes a
+         height, the height changes the element, the observer fires again, and
+         the value grows on every frame until the layout is nonsense. Measure
+         into one property, size with another. */
+      --obscured-top: 88px;
+      --obscured-bottom: 96px;
+
+      /* The fix. scroll-padding shrinks the region the browser treats as the
+         usable scrollport, so any scroll-into-view operation stops short of
+         these strips. It covers sequential focus navigation with Tab and
+         Shift+Tab, fragment links such as the skip link below, and
+         scrollIntoView(), with no scroll handling of our own. */
+      scroll-padding-top: var(--obscured-top);
+      scroll-padding-bottom: var(--obscured-bottom);
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      color: #1c1c1c;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #005fcc;
+      outline-offset: 2px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 20px;
+      background: #123047;
+      color: #ffffff;
+      z-index: 10;
+    }
+    .site-header a { color: #ffffff; }
+
+    /* The consent notice is author-opened, not user-opened, so the exception
+       in the success criterion does not apply to it. Two things are done: it
+       is reserved for in scroll-padding-bottom, so nothing is ever focused
+       underneath it, and it can be dismissed, so it does not cover the foot of
+       every page for the whole visit. */
+    .consent {
+      position: fixed;
+      inset: auto 0 0 0;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #1c1c1c;
+      color: #ffffff;
+      z-index: 20;
+    }
+    .consent p { margin: 0; }
+    .consent button {
+      flex: none;
+      background: #ffffff;
+      color: #1c1c1c;
+      border: 0;
+      padding: 10px 16px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* The chat launcher is deliberately left out of the reservation. Its top
+       edge is 184px above the foot of the window, so reserving for it would
+       cost a quarter of the scrollport on a laptop, and it is 64px wide, so it
+       cannot entirely hide a full-width control. That is a judgement about
+       this layout, not a general rule: a corner widget large enough to cover a
+       whole control has to be counted, or moved. */
+    .chat-launcher {
+      position: fixed;
+      right: 20px;
+      bottom: 120px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 0;
+      background: #123047;
+      color: #ffffff;
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      background: #ffffff;
+      color: #0b5cab;
+      padding: 12px 16px;
+    }
+    .skip-link:focus { left: 8px; top: 8px; z-index: 30; }
+
+    main { padding: 0 20px 320px; max-width: 44rem; }
+    ul { padding-left: 20px; }
+    li { margin: 14px 0; }
+    main:focus { outline: none; }
+    a { color: #0b5cab; }
+    h2 { margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <span>Northwind Supply</span>
+    <nav aria-label="Primary">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#returns">Returns</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <h1>Ordering information</h1>
+    <p>
+      Scroll down a screen or two, then press Tab repeatedly, then Shift+Tab
+      back up. Every link stays clear of the header and of the notice at the
+      foot of the window.
+    </p>
+
+    <h2 id="catalogue">Catalogue</h2>
+    <p>Stock is grouped by material.</p>
+    <ul>
+      <li><a href="#catalogue">Fastenings index</a></li>
+      <li><a href="#catalogue">Sheet goods index</a></li>
+      <li><a href="#catalogue">Adhesives index</a></li>
+      <li><a href="#catalogue">Bulk pricing terms</a></li>
+    </ul>
+
+    <h2 id="delivery">Delivery</h2>
+    <p>Orders placed before 15:00 ship the same working day.</p>
+    <ul>
+      <li><a href="#delivery">Delivery timetable</a></li>
+      <li><a href="#delivery">Rural surcharge list</a></li>
+      <li><a href="#delivery">Carrier contact details</a></li>
+      <li><a href="#delivery">Tail lift booking</a></li>
+    </ul>
+
+    <h2 id="returns">Returns</h2>
+    <p>Unopened stock can be returned within thirty days.</p>
+    <ul>
+      <li><a href="#returns">Returns form</a></li>
+      <li><a href="#returns">Condition requirements</a></li>
+      <li><a href="#returns">Refund timescales</a></li>
+      <li><a href="#returns">Damage report form</a></li>
+    </ul>
+
+    <h2>Account</h2>
+    <p>Credit accounts are reviewed annually.</p>
+    <ul>
+      <li><a href="#main">Billing address</a></li>
+      <li><a href="#main">Purchase order reference</a></li>
+      <li><a href="#main">Nominated approver</a></li>
+    </ul>
+  </main>
+
+  <button class="chat-launcher" type="button">Chat</button>
+
+  <section class="consent" aria-label="Cookie notice">
+    <p>We use cookies to remember your basket.</p>
+    <button type="button" id="consent-accept">Accept</button>
+  </section>
+
+  <script>
+    // A hard-coded reservation is wrong the moment the header wraps to two
+    // rows at a narrow width, an announcement bar is added above it, or the
+    // banner text runs to three lines on a phone. Measuring keeps the value
+    // honest. This is the part that is usually missing when scroll-padding is
+    // applied once and the bug comes back on mobile only.
+    const header = document.querySelector('.site-header');
+    const banner = document.querySelector('.consent');
+    const root = document.documentElement;
+
+    const sync = () => {
+      root.style.setProperty('--obscured-top', header.offsetHeight + 'px');
+      root.style.setProperty(
+        '--obscured-bottom',
+        (banner.hidden ? 0 : banner.offsetHeight) + 'px'
+      );
+    };
+
+    const observer = new ResizeObserver(sync);
+    observer.observe(header);
+    observer.observe(banner);
+
+    document.getElementById('consent-accept').addEventListener('click', () => {
+      banner.hidden = true;
+      // The button that was focused has just been removed from the page. Left
+      // alone, focus falls to <body> and the next Tab starts again from the
+      // top of the document. Moving it to <main> keeps the user where they
+      // were. See 2.4.3 for the general rule.
+      document.getElementById('main').focus();
+      sync();
+    });
+  </script>
+</body>
+</html>

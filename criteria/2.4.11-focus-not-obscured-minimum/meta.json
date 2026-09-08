@@ -1,0 +1,8 @@
+{
+  "sc": "2.4.11",
+  "name": "Focus Not Obscured (Minimum)",
+  "level": "AA",
+  "axeDetectable": false,
+  "axeRules": [],
+  "manualCheck": "Scroll the page down, then Tab and Shift+Tab through it with the sticky header, cookie banner and chat widget all present. Every focused element must stay at least partly visible. Shift+Tab is the direction that fails, because it scrolls upward into the header."
+}

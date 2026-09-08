@@ -38,7 +38,8 @@ with whatever is behind it.
 ## The contrast requirement
 
 Under [1.4.11](../1.4.11-non-text-contrast/) the indicator needs 3:1 against
-the adjacent colour. Under WCAG 2.2, 2.4.11 Focus Not Obscured (Minimum) adds
+the adjacent colour. Under WCAG 2.2,
+[2.4.11 Focus Not Obscured (Minimum)](../2.4.11-focus-not-obscured-minimum/) adds
 that the focused element must not be entirely hidden by author content, which
 in practice means sticky headers and cookie banners that cover the element the
 user just tabbed to.
