@@ -16,7 +16,11 @@
                  padding: 10px 18px; font-size: 16px; }
 
     /* 3. A meaningful icon is graphical content and needs 3:1. #b35c00 on
-          white is 4.6:1 and still reads as an amber warning. */
+          white is 4.72:1 and still reads as an amber warning.
+
+          This comment said 4.6 until test/contrast.test.mjs was written and
+          the figure was asserted. A ratio quoted in a comment that nothing
+          checks is a ratio that is eventually wrong. */
     .icon-warn { color: #b35c00; }
 
     /* 4. The toggle states differ by more than fill: the on state carries a
@@ -27,6 +31,10 @@
               width: 16px; height: 16px; border-radius: 50%; background: #1a1a1a; }
     .toggle-on { background: #0b6b3a; }
     .toggle-on::after { left: auto; right: 3px; background: #ffffff; }
+      .on-gradient { display: inline-block; padding: 20px;
+                   background: linear-gradient(90deg, #0b3a6b, #6b0b3a); }
+    .btn-over { background: transparent; color: #fff; border: 2px solid #fff;
+                padding: 10px 18px; font-size: 16px; }
   </style>
 </head>
 <body>
@@ -43,5 +51,26 @@
   </p>
 
   <span class="toggle"></span> <span class="toggle toggle-on"></span>
+
+  <!-- 5. A control sitting on a gradient. This one is here to be
+       unjudgeable, and it is left in deliberately.
+
+       A boundary has to reach 3:1 against the colours next to it, and on a
+       gradient there is no single colour next to it: the ratio at one end of
+       this button is not the ratio at the other. A tool that samples one
+       pixel and prints a figure is printing the figure for that pixel. This
+       repository's own judging refuses the measurement and says which
+       element it refused, and tools/catalogue.mjs records that refusal as a
+       limit observed on a corrected page, so the README's claim about what
+       is not checked is asserted rather than merely written down.
+
+       The boundary itself is correct. A white border is past 3:1 against
+       every stop in this gradient, which was checked against the two
+       extremes by hand rather than by the script. -->
+  <p>
+    <span class="on-gradient">
+      <button class="btn-over" type="button">Apply offer</button>
+    </span>
+  </p>
 </body>
 </html>

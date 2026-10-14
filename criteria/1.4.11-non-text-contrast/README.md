@@ -50,3 +50,30 @@ as changing its fill, so it satisfies both.
 Focus indicators sit under this criterion as well as under
 [2.4.7](../2.4.7-focus-visible/). A focus ring that is invisible against the
 background fails here even if it technically exists.
+
+## The case on the corrected page that is there to be unjudgeable
+
+`pass.html` carries a fifth pattern: a button on a gradient. It is correct, and
+it is left in because this repository's own judging refuses to rate it.
+
+A boundary has to reach 3:1 against the colours next to it, and on a gradient
+there is no single colour next to it. The ratio at one end of the button is not
+the ratio at the other. A tool that samples one pixel and prints a figure is
+printing the figure for that pixel, and a figure that looks like a measurement
+and is not one is worse than no figure. So `lib/judge/non-text-contrast.mjs`
+names the element and the reason instead, and reports
+`1.4.11/background-not-a-flat-colour-not-judged`.
+
+That refusal is observed on the corrected page every run and asserted in
+`test/pairs.test.mjs`. If somebody widens the judging so the case disappears,
+the build goes red and the paragraph above has to be rewritten. That is the
+difference between stating a limit in prose and stating it in an assertion.
+
+The same refusal covers a colour in a space wider than sRGB.
+`lib/colour.mjs` returns null for `color()`, `oklch()` and `lab()` rather than
+falling back to black, because a wrong ink colour produces a confident wrong
+ratio, and that turns an unjudgeable control into a passing one.
+
+The boundary on that button is in fact fine: a white border is past 3:1
+against every stop in the gradient, checked against the two extremes by hand
+rather than by the script. Saying which of the two checked it is the point.
