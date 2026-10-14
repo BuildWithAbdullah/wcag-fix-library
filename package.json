@@ -1,11 +1,19 @@
 {
   "name": "wcag-fix-library",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Failing and corrected markup pairs indexed by WCAG success criterion, verified with axe-core.",
+  "description": "Failing and corrected markup pairs indexed by WCAG success criterion, with the nine criteria axe-core reports and the seven it does not judged separately and asserted both ways.",
   "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "verify": "node tools/verify.mjs"
+    "test": "node tools/run-tests.mjs",
+    "verify": "node tools/verify.mjs",
+    "audit": "node audit/run.mjs",
+    "axe": "node tools/axe-report.mjs",
+    "catalogue": "node tools/catalogue.mjs --write"
   },
   "devDependencies": {
     "@axe-core/puppeteer": "^4.13.0",
