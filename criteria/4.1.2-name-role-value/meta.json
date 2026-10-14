@@ -3,6 +3,13 @@
   "name": "Name, Role, Value",
   "level": "A",
   "axeDetectable": true,
-  "axeRules": ["button-name", "aria-toggle-field-name", "aria-valid-attr-value", "aria-required-attr", "aria-hidden-focus", "nested-interactive"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "button-name",
+    "aria-toggle-field-name",
+    "aria-valid-attr-value",
+    "aria-required-attr",
+    "aria-hidden-focus",
+    "nested-interactive"
+  ],
+  "manualCheck": "Operate every custom widget with a screen reader and confirm its name, its role and its current state are all announced, and that the state changes when the widget does. This is the criterion where a scan is least conclusive: a name that resolves to nothing comes back as incomplete, and a button nested inside a link comes back as a pass."
 }
