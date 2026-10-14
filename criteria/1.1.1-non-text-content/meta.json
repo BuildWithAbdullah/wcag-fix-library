@@ -3,6 +3,11 @@
   "name": "Non-text Content",
   "level": "A",
   "axeDetectable": true,
-  "axeRules": ["image-alt", "role-img-alt", "input-image-alt", "button-name"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "image-alt",
+    "role-img-alt",
+    "input-image-alt",
+    "button-name"
+  ],
+  "manualCheck": "For every image the scanner passed, read the alt text and ask whether it says what the image says. A rule can see that alt exists; nothing can see that it is wrong, and a chart described as \"chart\" passes every tool on the market. Then check the decorative ones are empty rather than absent, and read the page with images disabled."
 }

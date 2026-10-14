@@ -20,10 +20,24 @@ of the four problems below on a site that has had any attention at all.
 4. **Icon-only controls with no name.** The most common real failure on
    e-commerce templates: close buttons, cart buttons, hamburger menus, social
    links. Announced as "button" with no further information.
+5. **Image submit buttons with no alt.** The `alt` on `input type="image"` is
+   the button's label, not a description of the picture, so without it the
+   control has no accessible name at all. It survives in old checkout and
+   search templates because it still submits perfectly well with a mouse, and
+   the fix is to write what the button does rather than what the picture shows:
+   "Search", never "magnifying glass".
+6. **A background image with a role bolted on.** Somebody is told to add a
+   role, adds `role="img"` to the `div` carrying the CSS background, and stops.
+   The role makes it an image to assistive technology, and an image needs a
+   name, so all the role has changed is how clearly it is announced as unnamed.
+   Either name it or, if it carries no content, drop the role and leave it as
+   decoration.
 
 ## How to test
 
-- Automated: axe `image-alt`, `role-img-alt`, `input-image-alt`, `button-name`.
+- Automated: axe `image-alt`, `role-img-alt`, `svg-img-alt`, `input-image-alt`,
+  `button-name`. All five fire on `fail.html`, and `tools/pairs.mjs` asserts
+  that set exactly rather than asserting that at least one of them does.
 - Manual, and this is the part that matters: read every alt value out loud
   and ask whether it replaces the image or merely mentions it. No scanner can
   do this for you.

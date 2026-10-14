@@ -9,6 +9,7 @@
       margin: -1px; padding: 0; overflow: hidden;
       clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
     }
+      .hero { width: 320px; height: 120px; background: #444 url(hero.jpg) center/cover; }
   </style>
 </head>
 <body>
@@ -38,5 +39,19 @@
     <title id="avatar-title">Account avatar</title>
     <circle cx="16" cy="16" r="15" fill="#444"/>
   </svg>
+
+  <!-- 6. The alt on an image button is the button's label. Write what the
+       button does, not what the picture shows: "Search", never
+       "magnifying glass". -->
+  <form action="/search">
+    <label for="q">Search</label>
+    <input type="text" id="q">
+    <input type="image" src="search.png" alt="Search" width="32" height="32">
+  </form>
+
+  <!-- 7. A background image that carries content gets a name, and the role
+       stays. If it carried no content the honest fix is the opposite one:
+       drop the role and leave it as decoration. -->
+  <div role="img" aria-label="Three coats on a rail in a mill workshop." class="hero"></div>
 </body>
 </html>

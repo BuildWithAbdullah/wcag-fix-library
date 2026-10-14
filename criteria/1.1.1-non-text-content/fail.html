@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>1.1.1 failing patterns</title>
+  <style>
+    .hero { width: 320px; height: 120px; background: #444 url(hero.jpg) center/cover; }
+  </style>
 </head>
 <body>
   <h1>Product</h1>
@@ -29,5 +32,22 @@
   <svg role="img" width="32" height="32" viewBox="0 0 32 32">
     <circle cx="16" cy="16" r="15" fill="#444"/>
   </svg>
+
+  <!-- 6. An image button with no alt. The alt on input type="image" is the
+       button's label, not a description of the picture, so without it the
+       control is announced as "Submit button" at best and as the file name at
+       worst. It survives in old checkout templates because it still submits
+       perfectly well with a mouse. -->
+  <form action="/search">
+    <input type="text" aria-label="Search">
+    <input type="image" src="search.png" width="32" height="32">
+  </form>
+
+  <!-- 7. A picture delivered as a CSS background with an image role bolted
+       on. role="img" makes it an image to assistive technology, and an image
+       needs a name; the role on its own only changes how loudly it is
+       announced as unnamed. This is what a background-image carrying content
+       turns into when somebody is told to add a role. -->
+  <div role="img" class="hero"></div>
 </body>
 </html>
