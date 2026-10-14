@@ -3,6 +3,8 @@
   "name": "Contrast (Minimum)",
   "level": "AA",
   "axeDetectable": true,
-  "axeRules": ["color-contrast"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "color-contrast"
+  ],
+  "manualCheck": "Sample every piece of text the scanner skipped, which means text over an image, over a gradient, over a video, and text whose colour comes from a custom property the scanner could not resolve. Those come back as incomplete or as nothing at all. Then check the hover, focus, visited and disabled states, which a single scan never sees."
 }
