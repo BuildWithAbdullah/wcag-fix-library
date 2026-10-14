@@ -3,6 +3,11 @@
   "name": "Labels or Instructions",
   "level": "A",
   "axeDetectable": true,
-  "axeRules": ["label", "form-field-multiple-labels", "select-name", "aria-input-field-name"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "label",
+    "form-field-multiple-labels",
+    "select-name",
+    "aria-input-field-name"
+  ],
+  "manualCheck": "Fill the form in with a screen reader, slowly, and listen to what each field announces when focus arrives. A label can be correctly associated and still not say what the field wants. Check that format and length requirements are stated before the field rather than after a failed submission, and that required is conveyed in more than colour."
 }

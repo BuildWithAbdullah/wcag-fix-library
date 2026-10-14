@@ -74,3 +74,23 @@ for everyone and dramatically easier for anyone using voice input or a switch.
 - Manual: click every visible label and confirm the field receives focus.
 - Manual: `Tab` through the form with a screen reader running and confirm each
   field announces a name, a state, and any instruction that applies to it.
+
+## Two more cases, and one of them reports as neither
+
+**Two labels on one field.** A theme adds one, a plugin adds the other, and the
+result is a control whose accessible name is one of the two with nothing in the
+markup saying which. The page looks right. axe examines it and returns
+`incomplete` for `form-field-multiple-labels`, because which label wins is a
+browser and screen reader question rather than a DOM one, so a field whose name
+is undecided reports as neither passing nor failing. The fix is one label, with
+anything else the field needs to say in a hint tied to it with
+`aria-describedby`, which is announced after the name instead of competing
+with it.
+
+**An ARIA text field with no name.** Rich text editors and search widgets
+arrive as a `div` or a `span` with `role="textbox"`, which is enough to make a
+screen reader announce an edit field and gives the user nothing to tell them
+what it edits. axe reports this one properly, with `aria-input-field-name`.
+Where the element has to stay a div, it needs everything a real field gets for
+free: a name, and a visible label pointing at it. `aria-labelledby` works on an
+element that is not a form control, where the `for` attribute does not.

@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>3.3.2 failing patterns</title>
-  <style>body { font-family: system-ui, sans-serif; padding: 24px; }</style>
+  <style>body { font-family: system-ui, sans-serif; padding: 24px; }    .fake-input { display: block; border: 1px solid #767676; padding: 10px;
+                  min-height: 1.4em; max-width: 24rem; }
+  </style>
 </head>
 <body>
   <form>
@@ -39,6 +41,24 @@
         <option>Standard delivery</option>
         <option>Express delivery</option>
       </select>
+    </p>
+
+    <!-- 6. Two labels on one field. A theme adds one, a plugin adds the
+         other, and the result is a control whose accessible name is one of
+         the two with nothing in the markup saying which. The page looks
+         right. -->
+    <p>
+      <label for="company">Company</label>
+      <input type="text" id="company">
+      <label for="company">Optional</label>
+    </p>
+
+    <!-- 7. A text field built out of a div with an ARIA role and no name at
+         all. Rich text editors and search widgets arrive like this, and the
+         role is enough to make a screen reader announce it as an edit field
+         while giving the user nothing to tell them what it edits. -->
+    <p>
+      <span role="textbox" contenteditable="true" class="fake-input"></span>
     </p>
 
     <button type="submit">Continue</button>

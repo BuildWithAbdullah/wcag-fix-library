@@ -9,6 +9,9 @@
     .req { color: #b3001b; }
     .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
       overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+      .fake-input { display: block; border: 1px solid #767676; padding: 10px;
+                  min-height: 1.4em; max-width: 24rem; }
+    .label-text { display: block; }
   </style>
 </head>
 <body>
@@ -56,6 +59,25 @@
         <option>Standard delivery</option>
         <option>Express delivery</option>
       </select>
+    </p>
+
+    <!-- 6. One label per field. Anything else the field needs to say goes
+         in a hint tied to it with aria-describedby, which is announced after
+         the name instead of competing with it. -->
+    <p>
+      <label for="company">Company</label>
+      <span class="hint" id="company-hint">Optional</span><br>
+      <input type="text" id="company" aria-describedby="company-hint">
+    </p>
+
+    <!-- 7. Where a div has to be the field, it needs everything a real field
+         gets for free: a name, and a visible label pointing at it.
+         aria-labelledby works on an element that is not a form control,
+         where the for attribute does not. -->
+    <p>
+      <span class="label-text" id="notes-label">Delivery notes</span>
+      <span role="textbox" contenteditable="true" aria-labelledby="notes-label"
+            aria-multiline="true" class="fake-input"></span>
     </p>
 
     <button type="submit">Continue</button>
