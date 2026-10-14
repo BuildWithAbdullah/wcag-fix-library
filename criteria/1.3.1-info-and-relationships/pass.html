@@ -7,6 +7,8 @@
     h2 { font-size: 1.6rem; font-weight: 700; margin: 1.2em 0 .4em; }
     .nav-row { display: flex; gap: 1rem; list-style: none; padding: 0; }
     fieldset { border: 1px solid #767676; }
+      .stack { list-style: none; padding: 0; }
+    .badges { display: flex; gap: 1rem; list-style: none; padding: 0; }
   </style>
 </head>
 <body>
@@ -46,5 +48,39 @@
     <label><input type="radio" name="speed" value="std"> Standard</label>
     <label><input type="radio" name="speed" value="exp"> Express</label>
   </fieldset>
+
+  <!-- 5. The list items are back inside a list. If a grid is wanted, put
+       display:grid on the ul: a list is not required to look like one. -->
+  <ul class="stack">
+    <li>Free returns within thirty days</li>
+    <li>Repairs at cost, forever</li>
+  </ul>
+
+  <!-- 6. Either give the children the role the parent requires, or stop
+       hand-writing the list. The second is better: a ul needs no roles, no
+       review and no test. -->
+  <ul class="badges">
+    <li>Organic cotton</li>
+    <li>Made in a mill we have visited</li>
+  </ul>
+
+  <!-- 7. Every header has a column under it. The choice is to add the cells
+       or to remove the header, and the cells are usually the right answer
+       because the header was added for a reason. An empty cell is fine; a
+       header with no cells is not. -->
+  <table class="sizes">
+    <caption>Stock by size</caption>
+    <thead>
+      <tr>
+        <th scope="col">Size</th>
+        <th scope="col">In stock</th>
+        <th scope="col">Next delivery</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">S</th><td>4</td><td>None scheduled</td></tr>
+      <tr><th scope="row">M</th><td>0</td><td>14 March</td></tr>
+    </tbody>
+  </table>
 </body>
 </html>

@@ -6,6 +6,8 @@
   <style>
     .headingish { font-size: 1.6rem; font-weight: 700; margin: 1.2em 0 .4em; }
     .nav-row { display: flex; gap: 1rem; }
+      .stack > div { margin: .4em 0; }
+    .badges { display: flex; gap: 1rem; }
   </style>
 </head>
 <body>
@@ -35,5 +37,38 @@
   <p>Delivery speed</p>
   <label><input type="radio" name="speed" value="std"> Standard</label>
   <label><input type="radio" name="speed" value="exp"> Express</label>
+
+  <!-- 5. List items with no list around them. This is what a correct list
+       becomes the first time somebody wraps each item in a div for a grid,
+       or drops a wrapper in between for an animation library. The items
+       still look like a list and are no longer announced as one. -->
+  <div class="stack">
+    <div><li>Free returns within thirty days</li></div>
+    <div><li>Repairs at cost, forever</li></div>
+  </div>
+
+  <!-- 6. A list built out of ARIA, with children that do not carry the role
+       the parent requires. role="list" promises listitem children, and divs
+       do not become listitems by sitting inside it. Hand-written ARIA fails
+       this way far more often than native HTML does, because nothing in the
+       markup looks wrong. -->
+  <div role="list" class="badges">
+    <div>Organic cotton</div>
+    <div>Made in a mill we have visited</div>
+  </div>
+
+  <!-- 7. A header cell that heads nothing. A column was added to the header
+       row and never added to the body rows, so the third header has no data
+       under it. Sighted users see a slightly odd empty column. A screen
+       reader user navigating by column gets an announced header for a column
+       that is not there, and every cell after it is announced against the
+       wrong header. This is the most common table defect in a long-lived
+       template and it is invisible in a screenshot. -->
+  <table class="sizes">
+    <caption>Stock by size</caption>
+    <tr><th scope="col">Size</th><th scope="col">In stock</th><th scope="col">Next delivery</th></tr>
+    <tr><td>S</td><td>4</td></tr>
+    <tr><td>M</td><td>0</td></tr>
+  </table>
 </body>
 </html>

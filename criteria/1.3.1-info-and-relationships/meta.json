@@ -3,6 +3,11 @@
   "name": "Info and Relationships",
   "level": "A",
   "axeDetectable": true,
-  "axeRules": ["list", "listitem", "aria-required-children", "th-has-data-cells"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "list",
+    "listitem",
+    "aria-required-children",
+    "th-has-data-cells"
+  ],
+  "manualCheck": "Navigate by heading and confirm the order and the levels match the visible structure. Then arrow through every table with a screen reader and confirm each cell is announced against the right header. The rules here catch markup that is missing; they cannot catch a heading level chosen for its font size or a scope attribute pointing the wrong way."
 }
