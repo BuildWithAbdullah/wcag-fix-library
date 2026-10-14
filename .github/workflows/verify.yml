@@ -7,12 +7,74 @@ on:
   workflow_dispatch:
 
 jobs:
-  axe:
+  # The fast job. No browser, no network, so it fails in seconds on a dash
+  # pasted in from a word processor, a catalogued finding with no description,
+  # or a judge that has started importing a browser driver.
+  repository:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - run: npm install
       - run: npm run verify
+
+  # The real browser, on every supported version. 20 is deliberately absent:
+  # puppeteer 25 declares engines.node >=22.12.0, so a floor below that is a
+  # range the package cannot install on. The floor in package.json is checked
+  # by the job below rather than assumed here.
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test
+      - run: npm run audit
+      - run: npm run axe
+
+  # The declared engines floor has to be a version the package actually
+  # installs and runs on, not a guess. This job runs on the exact floor.
+  engine-floor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the floor out of package.json
+        id: floor
+        run: |
+          floor=$(node -p "require('./package.json').engines.node.replace(/^[^0-9]*/, '')")
+          echo "version=$floor" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ steps.floor.outputs.version }}
+      - run: npm install --engine-strict
+      - run: npm run verify
+      - run: npm test
+
+  # The catalogue is generated, so CI regenerates it and fails if the
+  # committed copy differs.
+  #
+  # Note the `node tools/catalogue.mjs` rather than `npm run catalogue`. npm
+  # writes two lines of its own to stdout before the script's output, so a
+  # redirect through npm can never match the file. That passed locally and
+  # failed in CI on a sister repository on 11 October, because locally the
+  # script had been run directly.
+  generated-catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm install
+      - name: Regenerate and compare
+        run: |
+          node tools/catalogue.mjs > /tmp/catalogue.md
+          diff -u CATALOGUE.md /tmp/catalogue.md
