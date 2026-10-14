@@ -3,8 +3,19 @@
   "name": "Bypass Blocks",
   "level": "A",
   "axeDetectable": true,
-  "axeTags": ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"],
-  "axeRules": ["region", "landmark-one-main", "page-has-heading-one"],
+  "axeTags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa",
+    "best-practice"
+  ],
+  "axeRules": [
+    "region",
+    "landmark-one-main",
+    "page-has-heading-one"
+  ],
   "axeNote": "axe classifies the landmark rules as best-practice rather than WCAG-tagged, so a scan filtered to WCAG tags alone reports nothing here. Its own bypass rule returns incomplete rather than a violation, because it cannot determine from the DOM whether a skip mechanism works.",
-  "manualCheck": "n/a"
+  "manualCheck": "Press Tab once on a cold load and use the skip link. axe cannot determine from the DOM whether a skip mechanism works, so its bypass rule returns incomplete and never a violation. Confirm the link is visible when focused, that it moves focus rather than only scrolling, and that the target is not then hidden under a sticky header. See 2.4.11."
 }
