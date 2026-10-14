@@ -3,6 +3,8 @@
   "name": "Resize Text",
   "level": "AA",
   "axeDetectable": true,
-  "axeRules": ["meta-viewport"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "meta-viewport"
+  ],
+  "manualCheck": "Zoom the browser to 200% and read the page. The rule catches a viewport meta that blocks pinch zoom; it says nothing about text in a fixed-height container, which clips rather than reflowing, or about a layout that holds together at 200% and collapses at 150%."
 }
