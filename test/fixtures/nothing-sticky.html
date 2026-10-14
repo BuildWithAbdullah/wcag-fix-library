@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fixture: nothing fixed or sticky</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    a:focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1>Fixture</h1>
+
+  <!-- A page with no fixed or sticky content at all. 2.4.11 is met, and it
+       is met without any measurement being informative, which is a different
+       statement from "measured and found correct". The audit says which one
+       it is. A tool that reports a clean result here and a clean result on a
+       page with a sticky header has told the reader the same thing about two
+       pages that are not the same. -->
+  <p><a href="#a">One</a></p>
+  <p><a href="#b">Two</a></p>
+  <div style="height: 1400px"></div>
+  <p><a href="#c">Three</a></p>
+</body>
+</html>

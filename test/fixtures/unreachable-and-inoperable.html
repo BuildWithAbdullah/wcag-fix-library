@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fixture: reachable but not operable</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; }
+    :focus-visible { outline: 3px solid #005fcc; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1>Fixture</h1>
+
+  <!-- A control that takes focus and then does nothing when a key is
+       pressed. This is the half of 2.1.1 that is easy to forget: the control
+       is reachable, so a tab order check passes it, and it is not operable,
+       so the criterion still fails. The handler is bound to mousedown, which
+       no key press produces. Carousel arrows and star ratings fail this way. -->
+  <div role="button" tabindex="0" onmousedown="alert('rated')">Rate this</div>
+
+  <!-- A link, to drive the limit that says link operability is reasoned
+       about rather than measured. Pressing Enter on it would leave the page
+       and end the walk, so the audit records that it did not press it. -->
+  <p><a href="/elsewhere">A link that is not pressed</a></p>
+
+  <!-- A button with no inline handler, to drive the limit that says an
+       action attached with addEventListener cannot be attributed. -->
+  <button type="button" id="scripted">Bound by script</button>
+
+  <script>
+    document.getElementById('scripted').addEventListener('click', function () {
+      // Deliberately not alert(), because the audit counts alert() calls and
+      // the point of this control is to be unobservable from outside.
+      document.title = 'clicked';
+    });
+  </script>
+</body>
+</html>

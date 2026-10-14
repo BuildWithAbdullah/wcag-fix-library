@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fixture: focus ring in a colour outside sRGB</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 24px; background: #ffffff; }
+
+    /* A focus ring declared in a wide gamut colour function. The ring is
+       almost certainly fine; the point is that lib/colour.mjs refuses to
+       resolve the value rather than falling back to black, because a wrong
+       backdrop or a wrong ink colour produces a confident wrong ratio, and a
+       confident wrong ratio is worse than no ratio. The audit names the
+       element and the value it would not resolve. */
+    button:focus-visible {
+      outline: 3px solid color(display-p3 0.1 0.3 0.9);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fixture</h1>
+  <button type="button">Focus me</button>
+</body>
+</html>
