@@ -13,6 +13,24 @@
   </style>
 </head>
 <body>
+  <!-- The corrected drawer does four things, and all four are asserted by
+       test/pairs.test.mjs from a transcript of real key presses rather than
+       from reading this file.
+
+       Focus moves into the drawer when it opens, so the user is where the
+       overlay is. The page behind is made inert, so Tab cannot leave the
+       drawer and assistive technology cannot read the page underneath;
+       covering it with paint does neither. Escape closes it, because that is
+       the only exit a keyboard user will try without being told. And focus
+       returns to the control that opened it, so the next Tab continues from
+       where the user was rather than from the top of the document.
+
+       The Tab cycling below the inert call is a fallback for browsers with
+       no inert support. It is never executed in the browser the tests run
+       in, and the audit says so: 2.1.2/inert-fallback-branch-not-executed is
+       reported on this page every run. A branch that only runs where the
+       tests cannot run is a branch nothing has checked, and saying that out
+       loud is better than leaving it to be discovered. -->
   <div id="page">
     <h1>Basket</h1>
     <button type="button" id="open">Open basket</button>
