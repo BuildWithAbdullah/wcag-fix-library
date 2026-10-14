@@ -6,6 +6,8 @@
   <style>
     .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
       overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+      .prose { color: #1a1a1a; max-width: 38rem; }
+    .in-prose { color: #0b5cab; text-decoration: underline; text-underline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -40,6 +42,18 @@
     <a href="/size-guide-men">Size guide<span class="visually-hidden">, menswear</span></a>
     and
     <a href="/size-guide-women">Size guide<span class="visually-hidden">, womenswear</span></a>
+  </p>
+
+  <!-- 5. The underline is back. It is the one link affordance that needs no
+       colour vision, no hover and no explanation. Where a design cannot have
+       underlines in body copy, the alternative is a non-colour difference
+       that is present at rest: weight, a background, or a small icon. Hover
+       is not an alternative, because it cannot be found without being found
+       first. -->
+  <p class="prose">
+    Our wool is bought as mill surplus, which is explained in
+    <a href="/journal/wool" class="in-prose">this month's journal</a>, along with
+    the mills we work with.
   </p>
 </body>
 </html>

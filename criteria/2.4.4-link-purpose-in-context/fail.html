@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>2.4.4 failing patterns</title>
+  <style>
+    .prose { color: #1a1a1a; max-width: 38rem; }
+    .bare { color: #3a4a63; text-decoration: none; }
+  </style>
 </head>
 <body>
   <h1>Journal</h1>
@@ -36,5 +40,25 @@
 
   <!-- 4. Two links with the same name going to different places. -->
   <p><a href="/size-guide-men">Size guide</a> and <a href="/size-guide-women">Size guide</a></p>
+
+  <!-- 5. A link inside a paragraph with the underline removed, so the only
+       thing marking it as a link is its colour, and that colour is 1.94:1
+       against the surrounding text. Anyone who cannot distinguish the two
+       cannot find the link in the sentence, and that includes a sighted user
+       on a washed-out screen in daylight. The usual defence is that it is
+       obvious on hover, which requires already knowing it is there.
+
+       A note on which criterion this is, because it matters to a report.
+       axe-core reports this with its link-in-text-block rule, which is
+       tagged 1.4.1 Use of Colour, not 2.4.4. So this page exhibits a
+       failure of a criterion the library does not have a folder for, and
+       meta.json says so rather than filing the rule under 2.4.4 and hoping
+       nobody reads the tag. A real page fails several criteria at once; a
+       declaration that pretends otherwise is the thing that goes stale. -->
+  <p class="prose">
+    Our wool is bought as mill surplus, which is explained in
+    <a href="/journal/wool" class="bare">this month's journal</a>, along with
+    the mills we work with.
+  </p>
 </body>
 </html>

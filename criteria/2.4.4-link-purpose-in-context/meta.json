@@ -3,6 +3,10 @@
   "name": "Link Purpose (In Context)",
   "level": "A",
   "axeDetectable": true,
-  "axeRules": ["link-name", "link-in-text-block", "identical-links-same-purpose"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "link-name",
+    "link-in-text-block",
+    "identical-links-same-purpose"
+  ],
+  "manualCheck": "List every link on the page out of context, which is one of the standard ways of navigating, and read the list. Any entry that does not say where it goes fails, and a scanner cannot judge that because the words are all present and correct. Check that links sharing a name go to the same place."
 }
