@@ -3,6 +3,8 @@
   "name": "Target Size (Minimum)",
   "level": "AA",
   "axeDetectable": true,
-  "axeRules": ["target-size"],
-  "manualCheck": "n/a"
+  "axeRules": [
+    "target-size"
+  ],
+  "manualCheck": "Measure the controls the rule reported as too small and check each one against its exception: inline in a sentence, controlled by the user agent, essential, or with 24px of clear spacing around it. The rule reports the size; whether an exception applies is a judgement. Then try the page on a phone with one thumb."
 }
